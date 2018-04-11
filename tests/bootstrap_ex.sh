@@ -14,13 +14,13 @@ source $tools/mongo_utils
 
 function create_bootstrapper {
     # create database of instances from $data/reverb_wikipedia_1000.txt
-    cmd1="python $tools/instances2matrix.py --host=localhost --port=1979 --reset test reverb_wikipedia_1000 $data/reverb/wikipedia_1000.txt"
+    cmd1="python $tools/instances2matrix.py --host=localhost --port=27017 --reset test reverb_wikipedia_1000 $data/reverb/wikipedia_1000.txt"
 
     # calculate PMI for reverb_wikipedia_1000_* collections
-    cmd2="python $tools/matrix2pmi.py --host=localhost --port=1979 --reset --start F_all test reverb_wikipedia_1000"
+    cmd2="python $tools/matrix2pmi.py --host=localhost --port=27017 --reset --start F_all test reverb_wikipedia_1000"
 
     # bootstrap new entities with espresso algorithm
-    cmd3="python $tools/espresso.py --host=localhost --port=1979 --n-best=10 --scorer=ReliabilityScorer --reset --start=1 --stop=10 test reverb_wikipedia_1000_2 promotes $data/seeds/promotes.dev"
+    cmd3="python $tools/espresso.py --host=localhost --port=27017 --n-best=10 --scorer=ReliabilityScorer --reset --start=1 --stop=10 test reverb_wikipedia_1000_2 promotes $data/seeds/promotes.dev"
 
     echo $cmd1 && eval $cmd1 && \
 	echo $cmd2 && eval $cmd2 && \
