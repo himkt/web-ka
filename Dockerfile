@@ -119,3 +119,5 @@ RUN pyenv rehash
 
 RUN pip install 'pymongo==2.5.1'
 RUN git clone git://github.com/himkt/web-ka.git $HOME/web-ka
+
+COPY start.sh /home/mongodb/start.sh
