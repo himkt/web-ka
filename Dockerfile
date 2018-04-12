@@ -117,3 +117,4 @@ RUN pyenv install 2.7.14
 RUN pyenv global 2.7.14
 RUN pyenv rehash
 
+RUN pip install 'pymongo==2.5.1'
